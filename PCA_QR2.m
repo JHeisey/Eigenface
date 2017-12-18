@@ -31,4 +31,3 @@ VV = V1(:,1:k);
 
 % DD = eig(H*H');
 end
-

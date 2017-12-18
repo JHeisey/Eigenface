@@ -1,4 +1,4 @@
-function [ VV, D1 ] = PCA_QR(m,k)
+function [ VV, D1 ] = PCA_QR(m,k,w,mu)
 %   Detailed explanation goes here
 [w, h] = size(m);
 mu = mean(m);

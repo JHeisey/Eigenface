@@ -1,5 +1,3 @@
-
-
 mat = linspace(10^2,2*10^3,10);
 mat = floor(mat);
 qr = [];

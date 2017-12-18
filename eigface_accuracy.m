@@ -3,14 +3,14 @@ clear;
 
 people=40;%Number of different people to select max 7 for training set
 poses=7;%Number of poses per person
-k = 250;%Dimensionality reduction, must be greater than 5
-pick = 18;%Individual person picked to reconstruct
+k = 270;%Dimensionality reduction, must be greater than 5
+pick = 1;%Individual person picked to reconstruct
 %pv = [1 8 15 22 29 36 43 50 57 64 71];%Vector of face index in training set
 %pv2 = [1 4 7 10 13 16 19 22 25 28 31];%Vector of face index in testing set
 [pv,pv2] = pickvec(people);
 m = people*poses;%Number of images
 score_mat = zeros(people,4);
-
+accuracy_mat = zeros(1,4);
 %Reads in the data and splits it into a training and test set
 [X,Xtest,r,c] = read_data(people,poses);
 
@@ -59,7 +59,7 @@ Xtestnorm = Xtest-Xmean;
 vecmat = {evectors,eigvec_svd,eigvec_qr,eigvec_pow};
 wmat = {W,W_svd,W_qr,W_pow};
 for i = 1:4
-    for j=1:40
+    for j=1:people
         %Acquire the weights or the new projection of the test set 
         W_test = weights(Xtestnorm,cell2mat(vecmat(i)),k);
 
@@ -74,4 +74,4 @@ for i = 1:4
     end
 end
 
-sum(score_mat,1)/40*100
+sum(score_mat,1)/people*100
